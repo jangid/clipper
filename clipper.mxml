@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- mxml\HellowWorld.mxml -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    creationComplete="initVars()">
+
+    <fx:Script>
+        <![CDATA[
+        import mx.core.FlexGlobals;
+
+        [Bindable]
+        public var clipperText:String;
+
+        private function initVars():void {
+            clipperText = FlexGlobals.topLevelApplication.parameters.text;
+        }
+
+        protected function main_button_click():void {
+            flash.system.System.setClipboard(clipperText);
+            main_label.text='Copied';
+        }
+        protected function main_button_over():void {
+            main_label.text='Copy to clipboard';
+        }
+        protected function main_button_out():void {
+            main_label.text='';
+        }
+        ]]>
+    </fx:Script>
+
+    <s:layout>
+        <s:HorizontalLayout/>
+    </s:layout>
+
+    <s:Button id="main_button"
+        icon="@Embed(source='assets/button.png')"
+        width="20"
+        height="20"
+        click="main_button_click()"
+        mouseOver="main_button_over()"
+        mouseOut="main_button_out()"
+        />
+    <s:Label id="main_label"
+        width="100"
+        height="20"
+        verticalAlign="middle"
+        text=""/>
+</s:Application>
