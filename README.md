@@ -14,32 +14,34 @@ usage
 
 Usage of this tools is similar to clippy (https://github.com/mojombo/clippy). I am pasting the Rails (Ruby) example here for convinience.
 
-    def clipper(text, bgcolor='#FFFFFF')
-      html = <<-EOF
-        <object classid="clsid:3B09234A-06D7-4DC5-9FC0-A60713666622"
-                width="110"
-                height="14"
-                id="clipper" >
-        <param name="movie" value="build/clipper.swf"/>
-        <param name="allowScriptAccess" value="always" />
-        <param name="quality" value="high" />
-        <param name="scale" value="noscale" />
-        <param NAME="FlashVars" value="text=#{text}">
-        <param name="bgcolor" value="#{bgcolor}">
-        <embed src="build/clipper.swf"
-               width="110"
-               height="14"
-               name="clipper"
-               quality="high"
-               allowScriptAccess="always"
-               type="application/x-shockwave-flash"
-               pluginspage="http://www.macromedia.com/go/getflashplayer"
-               FlashVars="text=#{text}"
-               bgcolor="#{bgcolor}"
-        />
-        </object>
-      EOF
-    end
+```ruby
+def clipper(text, bgcolor='#FFFFFF')
+  html = <<-EOF
+    <object classid="clsid:3B09234A-06D7-4DC5-9FC0-A60713666622"
+            width="110"
+            height="14"
+            id="clipper" >
+    <param name="movie" value="build/clipper.swf"/>
+    <param name="allowScriptAccess" value="always" />
+    <param name="quality" value="high" />
+    <param name="scale" value="noscale" />
+    <param NAME="FlashVars" value="text=#{text}">
+    <param name="bgcolor" value="#{bgcolor}">
+    <embed src="build/clipper.swf"
+           width="110"
+           height="14"
+           name="clipper"
+           quality="high"
+           allowScriptAccess="always"
+           type="application/x-shockwave-flash"
+           pluginspage="http://www.macromedia.com/go/getflashplayer"
+           FlashVars="text=#{text}"
+           bgcolor="#{bgcolor}"
+    />
+    </object>
+  EOF
+end
+```
 
 License
 -------
