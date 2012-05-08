@@ -8,51 +8,49 @@
     <fx:Script>
         <![CDATA[
         import mx.core.FlexGlobals;
-        import mx.managers.ToolTipManager;
-        import mx.controls.ToolTip;
 
         [Bindable]
         public var clipperText:String;
-        public var clipperTipStart:String;
-        public var clipperTipEnd:String;
-        public var clipTip:ToolTip;
+
+        [Embed('assets/button_up.png')]
+        public var iconUp: Class
+
+        [Embed('assets/button_over.png')]
+        public var iconOver: Class
+
+        [Embed('assets/button_down.png')]
+        public var iconDown: Class
 
         private function initVars():void {
             clipperText = FlexGlobals.topLevelApplication.parameters.text;
-            clipperTipStart
-                = FlexGlobals.topLevelApplication.parameters.toolTipStart;
-            clipperTipEnd
-                = FlexGlobals.topLevelApplication.parameters.toolTipEnd;
+            main_button.setStyle('icon', iconUp);
         }
 
         protected function main_button_click():void {
             flash.system.System.setClipboard(clipperText);
-            ToolTipManager.destroyToolTip(clipTip);
-            if(clipperTipEnd) {
-                clipTip
-                    = ToolTipManager.createToolTip(clipperTipEnd, 0, 20,
-                    'errorTipBelow') as ToolTip;
-            }
         }
         protected function main_button_over():void {
-            if(clipperTipStart) {
-                clipTip
-                    = ToolTipManager.createToolTip(clipperTipStart, 0, 20,
-                    'errorTipBelow') as ToolTip;
-            }
+            main_button.setStyle('icon', iconOver);
         }
         protected function main_button_out():void {
-            ToolTipManager.destroyToolTip(clipTip);
+            main_button.setStyle('icon', iconUp);
+        }
+        protected function main_button_down():void {
+            main_button.setStyle('icon', iconDown);
+        }
+        protected function main_button_up():void {
+            main_button.setStyle('icon', iconUp);
         }
         ]]>
     </fx:Script>
 
     <s:Button id="main_button"
-        icon="@Embed(source='assets/button.png')"
-        width="20"
-        height="20"
+        width="14"
+        height="14"
         click="main_button_click()"
         mouseOver="main_button_over()"
         mouseOut="main_button_out()"
+        mouseDown="main_button_down()"
+        mouseUp="main_button_up()"
         />
 </s:Application>
