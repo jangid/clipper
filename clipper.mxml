@@ -8,30 +8,40 @@
     <fx:Script>
         <![CDATA[
         import mx.core.FlexGlobals;
+        import mx.managers.ToolTipManager;
+        import mx.controls.ToolTip;
 
         [Bindable]
         public var clipperText:String;
+        public var clipperTipStart:String;
+        public var clipperTipEnd:String;
+        public var clipTip:ToolTip;
 
         private function initVars():void {
             clipperText = FlexGlobals.topLevelApplication.parameters.text;
+            clipperTipStart
+                = FlexGlobals.topLevelApplication.parameters.toolTipStart;
+            clipperTipEnd
+                = FlexGlobals.topLevelApplication.parameters.toolTipEnd;
         }
 
         protected function main_button_click():void {
             flash.system.System.setClipboard(clipperText);
-            main_label.text='Copied';
+            ToolTipManager.destroyToolTip(clipTip);
+            clipTip
+                = ToolTipManager.createToolTip(clipperTipEnd, 0, 20,
+                'errorTipBelow') as ToolTip;
         }
         protected function main_button_over():void {
-            main_label.text='Copy to clipboard';
+            clipTip
+                = ToolTipManager.createToolTip(clipperTipStart, 0, 20,
+                'errorTipBelow') as ToolTip;
         }
         protected function main_button_out():void {
-            main_label.text='';
+            ToolTipManager.destroyToolTip(clipTip);
         }
         ]]>
     </fx:Script>
-
-    <s:layout>
-        <s:HorizontalLayout/>
-    </s:layout>
 
     <s:Button id="main_button"
         icon="@Embed(source='assets/button.png')"
@@ -41,9 +51,4 @@
         mouseOver="main_button_over()"
         mouseOut="main_button_out()"
         />
-    <s:Label id="main_label"
-        width="100"
-        height="20"
-        verticalAlign="middle"
-        text=""/>
 </s:Application>

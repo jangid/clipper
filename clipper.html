@@ -1,28 +1,46 @@
 <html>
     <head>
         <title>Clippy HTML</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     </head>
     <body>
-        <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-            width="120"
-            height="20"
-            id="clipper" >
-            <param name="movie" value="build/clipper.swf"/>
-            <param name="allowScriptAccess" value="always" />
-            <param name="quality" value="high" />
-            <param name="scale" value="noscale" />
-            <param NAME="FlashVars" value="text=Hello Zindagi">
-            <param name="bgcolor" value="#ffffff">
-            <embed src="build/clipper.swf"
-                width="120"
-                height="20"
-                name="clipper"
-                quality="high"
-                allowScriptAccess="always"
-                type="application/x-shockwave-flash"
-                pluginspage="http://www.macromedia.com/go/getflashplayer"
-                FlashVars="text=Hello Zindagi"
-                bgcolor="#ffffff" />
-        </object>
+        <div id="main" style="width:80px">
+            Hello World
+            <div id="clipper-wrapper" style="position: absolute; z-index: 9998; width: 200px; height: 60px; left: -9999px; top: -9999px; ">
+                <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
+                    width="100%"
+                    height="100%"
+                    id="clipper" title="copy">
+                    <param name="movie" value="build/clipper.swf"/>
+                    <param name="allowScriptAccess" value="always" />
+                    <param name="quality" value="high" />
+                    <param name="scale" value="noscale" />
+                    <param NAME="FlashVars" value="text=Hello Zindagi&toolTipStart=Copy to Clipboard&toolTipEnd=Copied!">
+                    <param name="bgcolor" value="#ffffff">
+                    <embed src="build/clipper.swf"
+                        width="100%"
+                        height="100%"
+                        name="clipper"
+                        quality="high"
+                        allowScriptAccess="always"
+                        type="application/x-shockwave-flash"
+                        pluginspage="http://www.macromedia.com/go/getflashplayer"
+                        FlashVars="text=Hello Zindagi&toolTipStart=Copy to Clipboard&toolTipEnd=Copied!"
+                        bgcolor="#ffffff" title="copy"/>
+                </object>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                var position = jQuery('#main').position();
+                var width = jQuery('#main').width();
+                console.log(position.left);
+                console.log(width);
+                var clipper_left = position.left + width;
+                var clipper_top = position.top;
+                jQuery('#clipper-wrapper').css('left', clipper_left);
+                jQuery('#clipper-wrapper').css('top', clipper_top);
+            });
+        </script>
     </body>
 </html>
