@@ -28,14 +28,18 @@
         protected function main_button_click():void {
             flash.system.System.setClipboard(clipperText);
             ToolTipManager.destroyToolTip(clipTip);
-            clipTip
-                = ToolTipManager.createToolTip(clipperTipEnd, 0, 20,
-                'errorTipBelow') as ToolTip;
+            if(clipperTipEnd) {
+                clipTip
+                    = ToolTipManager.createToolTip(clipperTipEnd, 0, 20,
+                    'errorTipBelow') as ToolTip;
+            }
         }
         protected function main_button_over():void {
-            clipTip
-                = ToolTipManager.createToolTip(clipperTipStart, 0, 20,
-                'errorTipBelow') as ToolTip;
+            if(clipperTipStart) {
+                clipTip
+                    = ToolTipManager.createToolTip(clipperTipStart, 0, 20,
+                    'errorTipBelow') as ToolTip;
+            }
         }
         protected function main_button_out():void {
             ToolTipManager.destroyToolTip(clipTip);

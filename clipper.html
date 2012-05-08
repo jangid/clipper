@@ -34,8 +34,6 @@
             jQuery(document).ready(function () {
                 var position = jQuery('#main').position();
                 var width = jQuery('#main').width();
-                console.log(position.left);
-                console.log(width);
                 var clipper_left = position.left + width;
                 var clipper_top = position.top;
                 jQuery('#clipper-wrapper').css('left', clipper_left);
